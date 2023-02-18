@@ -116,9 +116,7 @@ $$e_2 =
     0\\
     0.17\\
 \end{bmatrix}
-\cdot \frac{1}{0.17}
-=
-\begin{bmatrix}
+\cdot \frac{1}{0.17} = \begin{bmatrix}
     -5.67 \\
     0\\
     1\\
