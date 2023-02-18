@@ -25,8 +25,8 @@ $$P_r =
     0 & 1 & 0 & 0\\
     0.174 & 0 & 0.985 & 0\\
     0 & 0 & 0 & 1
-    \end{bmatrix}$$
-    
+    \end{bmatrix}.$$
+
 We set the focal length $f=1$ for both cameras, yielding the perspective projection
 
 $$P_p = 
@@ -46,6 +46,7 @@ $$P_c =
     \end{bmatrix}$$
     
 We compute the projection of $T$ onto the image planes of $C_1$ and $C_2$ with
+
 $$\begin{bmatrix}
     su\\
     sv\\
@@ -92,6 +93,7 @@ $$R =
     0 & 1 & 0 & 0\\
     0.174 & 0 & 0.985\\
 \end{bmatrix}$$
+
 from $P_r$ and compute $E$:
 
 $$E = 
@@ -130,13 +132,16 @@ We plot $e_2$ on the image plane of $C_2$.
 
 
 Now we want to derive the homography $H_2$ that maps $e_2$ to infinity. First, we map $e_2$ to a point on the horizontal axis $(f,0,1)$. We notice that by the camera setup, $e_2$ fulfils this property already. We see that mapping $e_2$ to infinity is accomplished by the transformation $G$:
+
 $$G = 
 \begin{bmatrix}
     1 & 0 & 0 \\
     0 & 1 & 0\\
     -1/-5.67 & 0 & 1\\
 \end{bmatrix},$$
+
 so we get $H_2 = G$. Finally, we find $H_1$ by minimising the sum of square distances of corresponding points of the transformed images:
+
 $$\begin{split}
 H_1^* &= 
 \argmin_{H_1} \sum_i ||H_1p_{1i}-H_2p_{2i}||^2 \\
