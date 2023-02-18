@@ -48,11 +48,10 @@ $$P_c =
 We compute the projection of $T$ onto the image planes of $C_1$ and $C_2$ with
 
 $$\begin{bmatrix}
-    su\\
-    sv\\
+    su \\
+    sv \\
     s
-\end{bmatrix}_{A,B,C,D} 
-=
+\end{bmatrix}_{A,B,C,D} =
 P_c P_p P_r T_{A,B,C,D}$$
 
 and plot the tetrahedons, projected on the image plain of the cameras.
