@@ -67,9 +67,7 @@ $$K =
     fk_{u} & 0 & u_{0} \\
     0 & fk_{v} & v_{0} \\
     0 & 0 & 1 
-\end{bmatrix}
-=
-\begin{bmatrix}
+\end{bmatrix} = \begin{bmatrix}
     1 & 0 & 0 \\
     0 & 1 & 0 \\
     0 & 0 & 1 
