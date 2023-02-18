@@ -17,27 +17,19 @@ We perform stereo rectification with a simplified example. We set up two artific
 
 ![](images/1.png)
 
-To calculate the homographies $H_1$ and $H_2$ that rectify the images of $C_1$ and $C_2$, we need to find the epipoles $e_1$ and $e_2$ and set them to infinity. We will first explore the projection of $T$ onto the image planes of $C_1$ and $C_2$. $C_1$'s rigid body transformation $P_r$ is the identity matrix. $C_2$'s rigid body transformation is
-$$
-P_r = 
+To calculate the homographies $H_1$ and $H_2$ that rectify the images of $C_1$ and $C_2$, we need to find the epipoles $e_1$ and $e_2$ and set them to infinity. We will first explore the projection of $T$ onto the image planes of $C_1$ and $C_2$. $C_1$'s rigid body transformation $P_r$ is the identity matrix. $C_2$'s rigid body transformation is$$P_r = 
     \begin{bmatrix}
     0.985 & 0 & -0.174 & -1\\
     0 & 1 & 0 & 0\\
     0.174 & 0 & 0.985 & 0\\
     0 & 0 & 0 & 1
-    \end{bmatrix}.
-$$
-
-We set the focal length $f=1$ for both cameras, yielding the perspective projection
-$$
-P_p = 
+    \end{bmatrix}.$$
+We set the focal length $f=1$ for both cameras, yielding the perspective projection$$P_p = 
     \begin{bmatrix}
     1 & 0 & 0 & 0\\
     0 & 1 & 0 & 0\\
     0 & 0 & 1 & 0
-    \end{bmatrix}.
-$$
-
+    \end{bmatrix}.$$
 
 We set the origin of the pixels to the centre of the image plane and use the natural pixel scale of the world coordinates for $C_1$ and $C_2$ to simplify computations, i.e. setting the CCD calibration matrix $P_c$ to the identity matrix:
 
@@ -46,8 +38,8 @@ $$P_c =
     1 & 0 & 0 \\
     0 & 1 & 0 \\
     0 & 0 & 1 
-    \end{bmatrix}.$$
-
+    \end{bmatrix}$$
+    
 We compute the projection of $T$ onto the image planes of $C_1$ and $C_2$ with
 $$\begin{bmatrix}
     su\\
@@ -61,9 +53,11 @@ and plot the tetrahedons, projected on the image plain of the cameras.
 
 ![](images/2i.png)
 
-We set up $C_1$ so that $e_1$ is already in infinity. We can compute $e_2$ from the fundamental matrix $F=K^{\prime-T}EK^{-1}$. In our setup, $F$ is given by the essential matrix $E = T_{\times}R$, as we have set up $K$ to be the identity matrix:
-$$
-K = 
+We set up $C_1$ so that $e_1$ is already in infinity.
+We can compute $e_2$ from the fundamental matrix $F=K^{\prime-T}EK^{-1}$.
+In our setup, $F$ is given by the essential matrix $E = T_{\times}R$, as we have set up $K$ to be the identity matrix:
+
+$$K =
 \begin{bmatrix}
     fk_u & 0 & u_0 \\
     0 & fk_v & v_0 \\
@@ -74,47 +68,37 @@ K =
     1 & 0 & 0 \\
     0 & 1 & 0 \\
     0 & 0 & 1 
-\end{bmatrix}.
-$$
-We get
-$$
-T_{\times} = 
+\end{bmatrix}.$$
+
+We get $$T_{\times} = 
 \begin{bmatrix}
     0 & 0 & 0 \\
     0 & 0 & 1 \\
     0 & -1 & 0 
-\end{bmatrix}
-$$
-and 
-$$
-R = 
+\end{bmatrix}$$ and 
+$$R = 
 \begin{bmatrix}
     0.985 & 0 & -0.174\\
     0 & 1 & 0 & 0\\
     0.174 & 0 & 0.985\\
-\end{bmatrix}
-$$
+\end{bmatrix}$$
 from $P_r$ and compute $E$:
-$$
-E = 
+$$E = 
 \begin{bmatrix}
     0 & 0 & 0 \\
     0.174 & 0 & 0.985\\
     0 & -1 & 0\\
-\end{bmatrix}.
-$$
+\end{bmatrix}.$$
+
 By the epipolar constraint, we get $Fe_2 = Ee_2 = 0$, and we see that $e_2$ is the right null vector of $E$:
-$$
-    \operatorname{SVD}(E) =
+$$\operatorname{SVD}(E) =
 U,S,
 \begin{bmatrix}
     0 & -1 & 0 \\
     -0.17 & 0 & -0.98\\
     -0.98 & 0 & 0.17\\
-\end{bmatrix}
-$$
-$$
-e_2 = 
+\end{bmatrix}$$
+$$e_2 = 
 \begin{bmatrix}
     -0.98 \\
     0\\
@@ -126,25 +110,18 @@ e_2 =
     -5.67 \\
     0\\
     1\\
-\end{bmatrix}.
-$$
+\end{bmatrix}.$$
 
 We plot $e_2$ on the image plane of $C_2$.
 ![](images/3i.png)
 
 
-Now we want to derive the homography $H_2$ that maps $e_2$ to infinity. First, we map $e_2$ to a point on the horizontal axis $(f,0,1)$. We notice that by the camera setup, $e_2$ fulfils this property already. We see that mapping $e_2$ to infinity is accomplished by the transformation $G$:
-$$
-G = 
+Now we want to derive the homography $H_2$ that maps $e_2$ to infinity. First, we map $e_2$ to a point on the horizontal axis $(f,0,1)$. We notice that by the camera setup, $e_2$ fulfils this property already. We see that mapping $e_2$ to infinity is accomplished by the transformation $G$:$$G = 
 \begin{bmatrix}
     1 & 0 & 0 \\
     0 & 1 & 0\\
     -1/-5.67 & 0 & 1\\
-\end{bmatrix},
-$$
-so we get $H_2 = G$. Finally, we find $H_1$ by minimising the sum of square distances of corresponding points of the transformed images:
-$$
-\begin{split}
+\end{bmatrix},$$so we get $H_2 = G$. Finally, we find $H_1$ by minimising the sum of square distances of corresponding points of the transformed images:$$\begin{split}
 H_1^* &= 
 \argmin_{H_1} \sum_i ||H_1p_{1i}-H_2p_{2i}||^2 \\
 H_1^* &= 
@@ -153,9 +130,7 @@ H_1^* &=
     0.00 & 1.00 & 0.00\\
     0.347 & 0.01 & 0.926\\
 \end{bmatrix}.
-\end{split}
-$$
-
+\end{split}$$
 We apply $H_1$ and $H_2$ to our projections and plot our results.
 ![](images/4i.png)
 
