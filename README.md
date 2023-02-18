@@ -18,6 +18,7 @@ We perform stereo rectification with a simplified example. We set up two artific
 ![](images/1.png)
 
 To calculate the homographies $H_1$ and $H_2$ that rectify the images of $C_1$ and $C_2$, we need to find the epipoles $e_1$ and $e_2$ and set them to infinity. We will first explore the projection of $T$ onto the image planes of $C_1$ and $C_2$. $C_1$'s rigid body transformation $P_r$ is the identity matrix. $C_2$'s rigid body transformation is
+
 $$P_r = 
     \begin{bmatrix}
     0.985 & 0 & -0.174 & -1\\
@@ -25,7 +26,9 @@ $$P_r =
     0.174 & 0 & 0.985 & 0\\
     0 & 0 & 0 & 1
     \end{bmatrix}$$
+    
 We set the focal length $f=1$ for both cameras, yielding the perspective projection
+
 $$P_p = 
     \begin{bmatrix}
     1 & 0 & 0 & 0\\
