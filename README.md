@@ -24,7 +24,7 @@ $$P_r =
     0 & 1 & 0 & 0\\
     0.174 & 0 & 0.985 & 0\\
     0 & 0 & 0 & 1
-    \end{bmatrix}.$$
+    \end{bmatrix}$$
 We set the focal length $f=1$ for both cameras, yielding the perspective projection
 $$P_p = 
     \begin{bmatrix}
