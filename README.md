@@ -64,8 +64,8 @@ In our setup, $F$ is given by the essential matrix $E = T_{\times}R$, as we have
 
 $$K =
 \begin{bmatrix}
-    fk_u & 0 & u_0 \\
-    0 & fk_v & v_0 \\
+    fk_{u} & 0 & u_{0} \\
+    0 & fk_{v} & v_{0} \\
     0 & 0 & 1 
 \end{bmatrix}
 =
